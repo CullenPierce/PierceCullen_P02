@@ -1,18 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WinCardGameState : CardGameState
 {
-    // Start is called before the first frame update
-    void Start()
+
+    [SerializeField] Text _YouWin = null;
+    private void Start()
     {
-        
+        _YouWin.gameObject.SetActive(false);
+    }
+    public override void Enter()
+    {
+        _YouWin.gameObject.SetActive(true);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }
