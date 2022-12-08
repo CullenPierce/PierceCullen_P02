@@ -5,6 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class LoseCardGameState : CardGameState
 {
+    private void Start()
+    {
+
+    }
     public override void Enter()
     {
         SceneManager.LoadScene("LoseScreen");
