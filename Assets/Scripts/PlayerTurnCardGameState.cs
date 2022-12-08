@@ -6,17 +6,20 @@ using UnityEngine.SceneManagement;
 
 public class PlayerTurnCardGameState : CardGameState
 {
-    [SerializeField] Text _playerTurnTextUI = null;
+    
 
-    int _playerTurnCount = 0;
+    [SerializeField] GameObject _rockIcon = null;
+    [SerializeField] GameObject _paperIcon = null;
+    [SerializeField] GameObject _scissorsIcon = null;
+
+    
 
     public override void Enter()
     {
         Debug.Log("Player Turn: ...Entering");
-        _playerTurnTextUI.gameObject.SetActive(true);
+        
 
-        _playerTurnCount++;
-        _playerTurnTextUI.text = "Player Turn: " + _playerTurnCount.ToString();
+        
 
         StateMachine.Input.PressedConfirm += OnPressedConfirm;
         StateMachine.Input.PressedCancel += OnPressedCancel;
@@ -24,7 +27,7 @@ public class PlayerTurnCardGameState : CardGameState
 
     public override void Exit()
     {
-        _playerTurnTextUI.gameObject.SetActive(false);
+        
 
         StateMachine.Input.PressedConfirm -= OnPressedConfirm;
         StateMachine.Input.PressedCancel -= OnPressedCancel;
@@ -34,12 +37,8 @@ public class PlayerTurnCardGameState : CardGameState
 
     void OnPressedConfirm()
     {
-        if(_playerTurnCount >= 3)
-        {
-            StateMachine.ChangeState<WinCardGameState>();
-            Debug.Log("WInSTate");
-        }
-        if(_playerTurnCount< 3)
+        
+        if(_rockIcon.activeSelf == true || _paperIcon.activeSelf == true || _scissorsIcon.activeSelf == true)
         {
             StateMachine.ChangeState<EnemyTurnCardGameState>();
 
